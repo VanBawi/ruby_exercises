@@ -12,4 +12,5 @@ puts"ones place is #{four_digits%10}"
 # hundreds=nb%1000/100
 # tens=nb%100/10
 # ones=nb%10
+1 .+ 2 = 3
 
