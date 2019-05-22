@@ -1,4 +1,3 @@
-
 loop do
         puts "Type in your guess number within 1-1000:"
         guess = gets.chomp.to_i

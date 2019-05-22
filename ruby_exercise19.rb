@@ -1,24 +1,15 @@
 puts "Enter a number to convert to Roman Numerals:"
 roman_num=gets.chomp.to_i
-  ROMAN_MAP = { 1 => "I",
-                4 => "IV",
-                5 => "V",
-                9 => "IX",
-                10 => "X",
-                40 => "XL",
-                50 => "L",
-                90 => "XC",
-                100 => "C",
-                400 => "CD",
-                500 => "D",
-                900 => "CM",
-                1000 => "M" }
 
-ROMAN_NUMERALS = Array.new(3999) do |index|
-    target = index + 1
-    ROMAN_MAP.keys.sort { |a, b| b <=> a }.inject("") do |roman, div|
-        times, target = target.divmod(div)
-        roman << ROMAN_MAP[div] * times
-    end
+values = [["M",1000], ["CM",900], ["D",500], ["CD",400], ["C",100], ["XC", 90], ["L",50], ["XL", 40],["X", 10], ["IX", 9], ["V", 5], ["IV", 4], ["I", 1]]
+
+final_roman= ""
+
+values.each do |each_value|
+    roman_numeral=each_value[0]
+    value=each_value[1]
+    final_roman=final_roman + (roman_numeral * (roman_num/value))
+    roman_num=roman_num % value
 end
-# puts "Array"
+
+puts final_roman

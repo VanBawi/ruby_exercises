@@ -7,6 +7,8 @@ triangles=gets.chomp.to_i
   puts " "
 end
 
+
+# bonus section
 puts " "
 triangles= triangles 
 triangles.downto(1) do |count|
