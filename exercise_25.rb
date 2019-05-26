@@ -17,9 +17,8 @@
 # … etc
 
 def extract_integer(input_string)
-    if input_string=[]
-    input.each {|line|}
-    input_string << line.match (/a-zA-Z(\d{3})/).values_at(1)[0]
+    num= input_string.scan(/[-]?\d+/)
+    puts "#{num}"
 end
 
 input = "dS-23a1lt578jmnw-1n-23bsi-12p7nbh7asd23mbj578frew1a7oo903o7mk12arr909oposdf435rr"

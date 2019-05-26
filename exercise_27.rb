@@ -6,12 +6,15 @@ puts "What will be happening in this time?"
 sec_time=gets.chomp.to_s
 
 puts "Is it your last activity you would like to take? (Y/N)"
-answer=gets.chomp
-    case answer
-    when answer "Y"
+answer=gets.chomp.to_s
+   
+    while true
+        answer != "Y"
         puts "Would you like to add activity?"
-        break if answer "N" 
+        break if answer "Y" 
     end
 
+
+hash ={time,activity}
 
 

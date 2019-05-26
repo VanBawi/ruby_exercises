@@ -9,8 +9,15 @@ frequencies=frequencies.sort_by {|count, amount| amount}
 
 frequencies.each do |count, amount|
     puts count + " " + amount.to_s
+
 end
 
+def has_unique_letters?(text)
+    letters= text.gsub(/[^A-Za-z]/, '').chars
+    letters ==letters.uniq
+end
+
+has_unique_letters?(text)
 # Bonus section
 
 # puts "Write a sentence"
