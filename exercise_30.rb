@@ -16,7 +16,7 @@
 
 
 def adult_in_group?(array)
-    z = array[0..4].values_at
+    z = array[0..4].values
     if z.any? { |el| e >=18 }
         return true
     else

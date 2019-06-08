@@ -21,3 +21,5 @@ if age.even? == true
 else
     "you have odd number of years"
 end
+
+is_leap_year = year % 4 == 0 && year % 100 != 0 || year % 400 == 0

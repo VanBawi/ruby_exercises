@@ -5,7 +5,7 @@
 # Bonus: Extract email addresses out of a longer string before validating them
 
 def validate_email(string)
-    if string =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+    if string.match(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i)
         return "Complete email"
     else 
         return "Incomplete email"

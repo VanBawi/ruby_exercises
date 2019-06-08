@@ -1,7 +1,10 @@
 puts "Write a sentence"
 text= gets.chomp
 
-sentence =text.split
+
+
+sentence =text.split(" ")
+p sentence.uniq
 frequencies = Hash.new(0)
 
 sentence.each {|count| frequencies[count]+= 1}

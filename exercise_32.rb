@@ -16,7 +16,7 @@
 # end
 
 def max_number(maxnum)
-    maxnum.max_inject do |acc, el|
+    maxnum.inject do |acc, el|
         if acc >= el
             el
         else

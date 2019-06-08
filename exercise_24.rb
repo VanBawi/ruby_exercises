@@ -8,7 +8,7 @@
 # Run the Ruby script - If your regex is right, when it says ‘Valid Usernames’ it should all return “The username is valid”, and when it says “Invalid Usernames” it should all return “The username is invalid”
 
 def validate_username(string)
-   string =~ /\A[a-zA-Z0-9]{3,20}\z/
+   string.match(/\A[a-zA-Z0-9]{3,20}\z/)
 end
 
 8.times { print "*" }
