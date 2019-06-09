@@ -14,5 +14,4 @@ def fuzz_buzz(num)
         end
     end
     numbers
-    byebug
 end

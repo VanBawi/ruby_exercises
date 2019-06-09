@@ -39,6 +39,20 @@ def hipsterfy(str)
     str.sub(/[aeiou](?=[^aeiou]*\z)/,"")
 end
 
+def count_vowels(string)
+  num_vowels = 0
+
+  i = 0
+  while i < string.length
+    if (string[i] == "a" || string[i] == "e" || string[i] == "i" || string[i] == "o" || string[i] == "u")
+      num_vowels += 1
+    end
+
+    i += 1
+  end
+
+  return num_vowels
+end
 # def vowel_counts(string)
 #     new_string = string.downcase
 #     count=Hash.new(0)
@@ -51,27 +65,27 @@ end
 # end
 
 def caesar_cipher(offset, string)
-    words = string.split(" ")
-  
-    word_idx = 0
-    while word_idx < words.length
-      word = words[word_idx]
-  
-      letter_idx = 0
-      while letter_idx < word.length
-        char_i = word[letter_idx].ord - "a".ord
-  
-        new_char_i = (char_i + offset) % 26
-        word[letter_idx] = ("a".ord + new_char_i).chr
-  
-        letter_idx += 1
-      end
-  
-      word_idx += 1
+  words = string.split(" ")
+
+  word_idx = 0
+  while word_idx < words.length
+    word = words[word_idx]
+
+    letter_idx = 0
+    while letter_idx < word.length
+      char_i = word[letter_idx].ord - "a".ord
+
+      new_char_i = (char_i + offset) % 26
+      word[letter_idx] = ("a".ord + new_char_i).chr
+
+      letter_idx += 1
     end
-  
-    return words.join(" ")
+
+    word_idx += 1
   end
+
+  return words.join(" ")
+end
   
   
     

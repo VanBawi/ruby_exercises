@@ -1,27 +1,43 @@
-# def partition(array,num)
+def partition(array,num)
+    small =[]
+    large = []
+    array.each do |x|
+        if x < num
+            small.push x
+        else
+            large.push x
+        end
+    mix = [small , large]
+end
 
-# end
+def merge(hash_1,hash_2)
+    merged = hash_1,hash_2.merge
+end
 
-# def merge(hash_1,hash_2)
+def is_power_of_two?(num)
+    if num < 1
+      return false
+    end
+  
+    while true
+      if num == 1
+        return true
+      elsif num % 2 == 0
+        num = num / 2
+      else
+        return false
+      end
+    end
+end
 
-# end
-
-# def censor(sentence,array)
-
-# end
-
-# def power_of_two?
-
-# end
-
-# def palindrome?
-
-# end
-
-# def substrings(string)
-
-# end
-
-# def palindrome_substrings(string)
-
-# end
+def palindrome?(string)
+    if string.length == 1 || string.length == 0
+      true
+    else
+      if string[0] == string[-1]
+        palindrome?(string[1..-2])
+      else
+        false
+      end
+    end
+end

@@ -14,6 +14,5 @@ def half_and_double(array)
             return num * 2
         end
     end
-    byebug
     new_array
 end

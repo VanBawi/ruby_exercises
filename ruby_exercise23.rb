@@ -11,7 +11,7 @@ data_arr.each do |element|
     element.each_with_index do |detail,index|
         hash[keys[index]] = detail  
     end
-    array<<hash
+    p array<<hash
 end
 
  p array
