@@ -98,26 +98,41 @@
 #     end
 # end
 
-string = "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate publishing the visual form of a document visual without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced text."
+# string = "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate publishing the visual form of a document visual without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced text."
 
-array = string.downcase.scan(/[\w'-]+/)
+# array = string.downcase.scan(/[\w'-]+/)
 
-# p array
-# unique_words =Hash.new(0)
-unique_words ={}
-array.each do |word|
-    # word = word.downcase
-    if unique_words[word] 
-    unique_words[word] += 1
-    else
-        unique_words[word] =1
+# # p array
+# # unique_words =Hash.new(0)
+# unique_words ={}
+# array.each do |word|
+#     # word = word.downcase
+#     if unique_words[word] 
+#     unique_words[word] += 1
+#     else
+#         unique_words[word] =1
+#     end
+# end
+
+# unique_words.each do |word,counter|
+#     if counter < 2
+#         puts word + "." counter + "time"
+#     else
+#         puts word + "." counter + "time"
+#     end
+# end
+
+
+
+def fuzz_buzz(num)
+    numbers = []
+
+    (1..num).each do |i|
+        if i % 3 != 0 && i % 5 != 0
+            numbers << i
+        end
     end
+    numbers
 end
 
-unique_words.each do |word,counter|
-    if counter < 2
-        puts word + "." counter + "time"
-    else
-        puts word + "." counter + "time"
-    end
-end
+p fuzz_buzz(11)
