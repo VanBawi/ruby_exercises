@@ -43,7 +43,6 @@ class Dog
         end
         return false
     end
-
 end
 
-dog_1 = Dog.new("Noodles", "German Shepard", 3, "Bork!", ["Sausage", "Chicken"])
+
