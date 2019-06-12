@@ -67,13 +67,15 @@ attr_accessor :lenght, :players
   # For Part 2:
   # Prints the ranking board (Scoreboard)
   def print_scoreboard
-      puts "Enter your number of player"
+      puts "Enter the number of players you want to compete with."
       number =gets.chomp.to_i
 
       number.times do
         puts "Enter your First Name"
-        name = gets.chomp
+        name = gets.chomp.to_s
       end
+
+      
 
 
   end
