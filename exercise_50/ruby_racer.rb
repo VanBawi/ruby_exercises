@@ -37,12 +37,14 @@ attr_accessor :lenght, :players
 
   # Returns the winner if there is one, nil otherwise
   def winner
-    @players.each do |player,score|
-      if score.sum >= @length
-        return player
-      end
+    highest_score = 0
+    @players.select {|player,score|score.sum >= @length}.each do |player,scores|
+        if highest_score < scores.sum
+          highest_score = scores.sum
+          winner = player
+        end
+      return winner
     end
-    return nil
   end
 
   # Prints the current game board
@@ -55,9 +57,9 @@ attr_accessor :lenght, :players
           position = @length -1
         end
         if position == index
-          print player.to_s+"|"
+          print player[0,2].to_s+"|"
             else 
-          print " |"
+          print "  |"
         end
       end
       puts
@@ -67,19 +69,15 @@ attr_accessor :lenght, :players
   # For Part 2:
   # Prints the ranking board (Scoreboard)
   def print_scoreboard
-      puts "Enter the number of players you want to compete with."
-      number =gets.chomp.to_i
+      puts "==============================="
+      puts "         SCORE BOARD"
+      puts "==============================="
 
-      number.times do
-        puts "Enter your First Name"
-        name = gets.chomp.to_s
+      scoring = players.sort_by {|player, score| [-score.sum, player]}
+      scoring.each do |x|
+        puts "#{x[0]} :   #{x[1].sum}"
       end
-
-      
-
-
   end
-
 end
 
 
@@ -107,9 +105,19 @@ end
 
  #### DRIVER CODE - DO NOT EDIT BELOW FOR PART 1 ####
 
-players = [:a, :b]
+# players = [:a, :b]
 
-game = RubyRacer.new(players)
+players = []
+puts "Enter the number of players you want to compete with."
+    number =gets.chomp.to_i
+
+    number.times do
+      puts "Enter your First Name"
+      name = gets.chomp.to_s
+      players << name
+    end
+
+   game = RubyRacer.new(players)
 
 # Clear the screen and print the board with players in their starting positions.
 # Then pause, so users can see the starting board. The fun can begin!
@@ -131,6 +139,7 @@ until game.finished?
     # and pause so users can see the updated board.
     reset_screen
     puts game.print_gameboard
+         game.print_scoreboard
 
     # We need to sleep a little, otherwise the game will blow right past us.
     # See http://www.ruby-doc.org/core-2.6.3/Kernel.html#method-i-sleep

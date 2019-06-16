@@ -100,7 +100,9 @@ until tree.dead?
   end
 
    # It's up to you to calculate the average diameter for this harvest.
-   avg_diameter = 
+   sum = 0
+  basket.each {|orange| sum += orange.diameter}
+  avg_diameter = sum/basket.length 
 
   puts "Year #{tree.age} Report"
   puts "Tree height: #{tree.height/100.0} m"

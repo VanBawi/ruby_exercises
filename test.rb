@@ -2,7 +2,7 @@
 #    puts num1 + num2
 # end
 # return  print_addition(1,1)
-require 'json'
+# require 'json'
 
 
 # class Board
@@ -220,15 +220,54 @@ require 'json'
 
 
 
-def fuzz_buzz(num)
-    numbers = []
+# def fuzz_buzz(num)
+#     numbers = []
 
-    (1..num).each do |i|
-        if i % 3 != 0 && i % 5 != 0
-            numbers << i
-        end
+#     (1..num).each do |i|
+#         if i % 3 != 0 && i % 5 != 0
+#             numbers << i
+#         end
+#     end
+#     numbers
+# end
+
+# p fuzz_buzz(11)
+
+
+
+
+class Gadget
+    def initialize
+    @username = "User #{rand(1..100)}"
+    @password = "Topsecret"
+    @production_number = "#{("A".."Z").to_a.sample}-#{rand(1..100)}"
     end
-    numbers
+
+    def to_s
+        "Gadget #{@production_number}"
+    end
+
+    def username
+        @username
+    end
+    def production_number
+        @production_number
+    end
+    def username=(new_username)
+        @username = new_username
+    end
+    def password=(new_password)
+        @password = new_password
+    end
 end
 
-p fuzz_buzz(11)
+
+
+
+phone = Gadget.new
+puts phone.to_s
+puts phone.username
+puts phone.username=("Rubyman")
+puts phone.production_number
+puts phone.password = "bestpasswordever"
+    
