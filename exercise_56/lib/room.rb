@@ -1,16 +1,9 @@
 class Room
     attr_accessor :capacity, :occupants
+
     def initialize(number)
         @capacity = number
         @occupants = []
-    end
-
-    def capacity
-        @capacity
-    end
-
-    def occupants
-        @occupants
     end
 
     def full?
@@ -22,15 +15,19 @@ class Room
         end
     end
 
-    def availabel_space
-        @occupants.size - @capacity
+    def available_space
+        @capacity - @occupants.size
     end
 
-    def add_occupant(name)
-        full?
+    def add_occupant(person)
+        if full?
+            return false
+        else
+            @occupants << person
+            return true
+        end
     end
 end
 
-room = Room.new(3)
 
 

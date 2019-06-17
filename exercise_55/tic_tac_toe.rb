@@ -1,3 +1,11 @@
+components we needed
+
+Players (same methods)
+
+
+
+
+
 # class Board
 
 #     def initialize

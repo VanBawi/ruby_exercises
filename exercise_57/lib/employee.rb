@@ -6,16 +6,7 @@ class Employee
         @earnings = 0
     end
 
-
-    def name 
-        @name
-    end
-
-    def title
-        @title
-    end
-
     def pay(number)
-        @earnings = 92
+        @earnings += number
     end
 end
