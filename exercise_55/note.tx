@@ -1,0 +1,57 @@
+Components We Need
+Players
+- initialize
+-- type of player
+-- marker that they use (O or X)
+Humans
+- move
+-- Ask for input
+-- store the movement that is made
+-- pass it to the game to mark on board
+Computers
+- move
+-- randomly generate a move
+-- store the movement that is made
+-- pass it to the game to mark on board
+Board
+- initialize - Create the game board
+-- store the grid with the markers of the players
+- empty? - check if a position is empty or not?
+- full? - check if the board is already full?
+- place_marker - place marker at certain position if there are no markers
+- get_marker - get marker at certain position if exist
+- to_s - Display the grid
+- winner - Shows the winning marker (if someone has won)
+- columns - gives the winnable columns and their markers
+- diagonal - gives the winnable diagonals and their markers
+- rows - gives the winnable rows and their markers
+
+Game
+- initialize (takes 2 players)
+-- keep track of the Board
+-- keep track of the Players and their markers
+-- keep track of the Player whose turn belongs to
+- play_game
+-- Should loop
+--- Show board
+--- get user move
+--- check if the position is empty then pass it to the board. If position is not empty, restart loop
+--- Check if there is a winner or the game is over? If it is over, then show board
+--- go to the next player
+- show
+-- ask for the board's representation (to_s)
+
+
+Driver
+- Ask if will play against computer or other person?
+Pseudocode
+1. Create the game board (Board)
+2. Create players (Player)
+3. Let's start the game (Game)
+4. Show the board (Game)
+5. Game Loop (Game)
+    a. Ask for input (Player)
+    b. Place input on board (Game)
+    c. Check if there is a winner or the game is over? (Game)
+    d. Move to next player (Game)
+    e. Show the board again (Game)
