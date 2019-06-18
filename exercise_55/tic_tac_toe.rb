@@ -1,13 +1,16 @@
+require 'byebug'
+
 class Player
-    def initialize(name, marker)
+    attr_reader :grid
+    attr_reader :name
+    def initialize(name)
         @name = name
-        @marker = marker
     end
 end
 
 class HumanPlayer < Player
 
-    def move
+    def move(game, marker)
         puts "enter your input" 
         #input will be e.g. "1,1"
         input = gets.chomp
@@ -15,29 +18,93 @@ class HumanPlayer < Player
         column = input.split(",")[1].to_i
         return [row, column]
     end
+
+
 end
 
 class ComputerPlayer < Player
-    def move
+    
+    def move(game, marker)
         # if able to win, return winning position
         # if not, do random move
         # return random move position
+        winning_move(game, marker) || random_move(game, marker)
+    end
+
+    def winning_move(game, marker)
+        
+        # Write a winning move that uses place_marker 
+        # directly without cloning
+
+        range = (0..2).to_a
+        range.each do |each_row|
+            range.each do |each_col|
+                position = [each_row, each_col]
+                if game.board.empty?(position)
+                    game.board.place_marker(position, marker)
+                    if game.board.winner == marker
+                        game.board.place_marker(position, nil)
+                        return position
+                    else
+                        game.board.place_marker(position, nil)
+                    end
+                end
+            end
+        end
+        return nil
+
+        # game.board.grid.each_with_index do |each_row, each_index|
+        #     game.board.grid.each_with_index do |each_col, col_index|
+        #     position = [each_row, each_index]
+        #         if game.board.empty?(position)
+        #             game.board.place_marker(position, marker)
+        #             if game.board.winner == marker
+        #                 game.board.place_marker(position, nil)
+        #                 return position
+        #             else
+        #                 game.board.place_marker(position, nil)
+        #             end
+        #         end
+        #     end
+        # end
+        # return nil
+
+        # range = (0..2).to_a
+        # range.each do |each_row|
+        #     range.each do |each_col|
+        #         position = [each_row, each_col]
+        #         temp_board = game.board.clone_board
+        #         if temp_board.empty?(position)
+        #             temp_board.place_marker(position, marker)
+        #             if temp_board.winner == marker
+        #                 return position
+        #             end
+        #         end
+        #     end
+        # end
+        # return nil
+    end
+
+    def random_move(game, marker)
+        range = (0..2).to_a
+        position = [range.sample, range.sample]
+
+        return position
     end
 end
 
 class Board
-    def initialize
-        @grid = [
-            [nil, nil, nil],
-            [nil, nil, nil],
-            [nil, nil, nil]
-        ]
+
+    attr_reader :grid
+
+    def initialize(grid = [[nil, nil, nil],[nil, nil, nil],[nil, nil, nil]])
+        @grid = grid 
     end
 
     def get_marker(position)
         # getter
         # position = e.g. [r,c]
-        @grid[position[0]][position[1]]
+        self.grid[position[0]][position[1]]
     end
 
     def empty?(position)
@@ -46,7 +113,7 @@ class Board
     end
 
     def full?
-        @grid.each do |each_row|
+        self.grid.each do |each_row|
             each_row.each do |each_element|
                 if each_element.nil?
                     return false
@@ -63,36 +130,46 @@ class Board
         #position = e.g. [0,0]
         # position[0] = 0
         #position[1] = 0
-        #marker = ?????????
+        #marker = "X" / "O"
 
-        if empty?(position)
+        if marker.nil? || empty?(position)
             # @grid[0][0]
-            @grid[position[0]][position[1]] = marker
+            self.grid[position[0]][position[1]] = marker
         else
             raise "already has a marker at this position"
         end
     end
 
     def to_s
-        @grid.each do |each_row|
+        self.grid.each do |each_row|
+            print "| "
             each_row.each do |each_element|
-                print each_element + " | "
+                print each_element.to_s + " | "
             end
-            puts "-" * 8
+            puts
+            puts "-" * 11
         end
+    end
+
+    def game_over?
+        won? || full?
+    end
+
+    def won?
+        !winner.nil?
     end
 
     def winner
         # grid is already rows
-        (@grid + columns + diagonals).each do |threes|
-            if threes == ["x", "x", "x"]
-                return "x"
+        (self.grid + columns + diagonals).each do |threes|
+            if threes == ["X", "X", "X"]
+                return "X"
             end
-            if threes == ["o", "o", "o"]
-                return "o"
+            if threes == ["O", "O", "O"]
+                return "O"
             end
         end
-
+        return nil
     end
 
     def columns
@@ -151,37 +228,87 @@ class Board
 
     end
 
+    def clone_board
+        new_grid = []
+        self.grid.each do |each_row|
+            new_grid << each_row.dup
+        end
+        return self.class.new(new_grid)
+    end
 
 end
 
 class Game
-    attr_accessor :player1, :player2
+    attr_reader :players, :board
+    attr_accessor :turn
     def initialize(player1, player2)
-        @player1 = player1
-        @player2 = player2
+        @board = Board.new
+        @players = { "X" => player1, "O" => player2 }
+        @turn = "X"
     end
 
-    def player_pos
+    def play_game
+        until self.board.game_over?
+
+            # byebug
+
+            self.show
+
+            #asking for input and sending it
+            loop do
+                # self is the instance of the Game
+                current_player = self.players[self.turn]
+                position = current_player.move(self, self.turn)
+
+                if self.board.empty?(position)
+                    self.board.place_marker(position, self.turn)
+
+                    # check if someone has won
+                    if self.board.won?
+                        winner = self.players[self.turn]
+                        puts "#{winner.name} has won!"
+                        self.show
+                        break
+                    end
+
+                    # check if someone
+                    if self.board.full?
+                        puts "It's a draw!"
+                        self.show
+                        break
+                    end
+
+                    # self.show
+
+                    #move to the next player
+                    self.switch_player
+
+                    break
+                end
+            end
+
+        end
+
 
     end
 
-    def player_pos_mark
-
+    def switch_player
+        if self.turn == "X"
+            self.turn = "O"
+        else
+            self.turn = "X"
+        end
     end
 
-    def turn_move
-
+    def show
+        puts self.board
     end
-
-
-    def start_game
-        
-    end
-
-    def 
-
-
-
-
-
 end
+
+human = HumanPlayer.new("Jack")
+computer = ComputerPlayer.new("Computer")
+
+Game.new(human, computer).play_game
+
+
+

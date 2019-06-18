@@ -2,9 +2,9 @@ class Hangman
 ::DICTIONARY = %w[should be an array words]
 ::random_word = ::DICTIONARY.sample
 def initialize
-  @@random_word 
-  @secret_word = @@random_word
-  @guess_word  = @@random_word.length
+  ::random_word 
+  @secret_word = ::random_word
+  @guess_word  = ::random_word.length
   @attempted_chars = []
   @remaining_incorrect_guesses = 5
 end
