@@ -36,7 +36,7 @@ Board
 
 Game
 - initialize (takes 2 players)
--- keep track of the Players and their status
+-- 
 - play_game
 -- Should loop
 --- Show board
