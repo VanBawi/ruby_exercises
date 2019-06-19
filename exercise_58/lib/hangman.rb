@@ -12,33 +12,75 @@ def initialize
 end
 
   def already_attempted?(char)
-      if char === @attempted_chars
-        return true
-      else
-        false
-      end
+      if @attempted_chars.include?(char)
+        return true 
+      elsif
+        !@attempted_chars.include?(char)
+        return false
+      end 
   end
 
   def get_matching_indices(char)
-
+    indices = []
+    @secret_word.each_char.with_index do |each, index|
+      indices << index if each == char
+    end
+    indices
   end
 
   def fill_indices
+      char  
+      @guess_word = char
   end
 
-  def try_guess
+  def try_guess(char1)
+    @get_matching_indices(char)
+    @fill_indices
+    if char.already_attempted?
+      puts "that has already been attempted"
+      return false
+    elsif !char.already_attempted?
+      @attempted_chars << char
+    end
   end
 
   def ask_user_for_guess
+      prints "Enter a char"
+      char1 = gets.chomp
+      @try_guess(char1)
+      return @try_guess
   end
 
   def win?
+      if @guess_word == @secret_word
+        return true
+        puts "WIN"
+      elsif
+        @guess_word != @secret_word
+        return false
+      end
+      
   end
 
   def lose?
+    if @remaining_incorrect_guesses == 0
+      puts "LOSE"
+      return true
+    elsif
+        @remaining_incorrect_guesses != 0
+        return false
+    end
   end
 
   def game_over?
+      win?
+      lose?
+      if win?
+        puts "#{@secret_word}"
+        return true
+      elsif !lose?
+        return false
+      end
   end
 
 end
