@@ -1,27 +1,26 @@
 class Hangman
-::DICTIONARY = %w[should be an array words]
-::random_word = ::DICTIONARY.sample
+DICTIONARY = ["bootcamp", "cat", "dog", "women"]
+  def self.random_word
+    DICTIONARY.sample
+  end
+attr_reader :guess_word, :secret_word, :attempted_chars, :remaining_incorrect_guesses
 def initialize
-  ::random_word 
-  @secret_word = ::random_word
-  @guess_word  = ::random_word.length
+  @secret_word = self.class.random_word
+  @guess_word  = ['_'] * @secret_word.length
   @attempted_chars = []
   @remaining_incorrect_guesses = 5
 end
 
-  def guess_word
+  def already_attempted?(char)
+      if char === @attempted_chars
+        return true
+      else
+        false
+      end
   end
 
-  def attempted_chars
-  end
+  def get_matching_indices(char)
 
-  def remaining_incorrect_guesses
-  end
-
-  def already_attempted?
-  end
-
-  def get_matching_indices
   end
 
   def fill_indices
