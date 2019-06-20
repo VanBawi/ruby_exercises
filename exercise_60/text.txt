@@ -1,0 +1,7 @@
+The ident is an event method name.
+I'm not sure that Ripper would be the easiest way to parse.
+Reading files and the man is a good one Oh ya.
+writing to files is an essential programming skill.
+Ripper would be the easiest way to parse.
+Reading the man is a good one Oh ya.
+an essential programming skill.
