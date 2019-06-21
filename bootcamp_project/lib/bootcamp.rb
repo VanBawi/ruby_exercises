@@ -1,4 +1,7 @@
 class Bootcamp
+
+    attr_reader :name, :slogan, :teachers, :students
+
     def initialize(name,slogan, student_capacity)
         @name = name
         @slogan = slogan
@@ -7,23 +10,7 @@ class Bootcamp
         @students =[]
         @grades   = Hash.new {|name,value| name[value]=[]}
     end
-        def name
-            @name 
-        end
-
-        def slogan
-            @slogan
-        end
-
-        def teachers
-            @teachers
-        end
-
-        def students
-            @students
-            
-        end
-
+       
         def hire(teacher)
             @teachers << teacher
 
