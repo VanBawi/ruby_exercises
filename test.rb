@@ -236,38 +236,46 @@
 
 
 
-class Gadget
-    def initialize
-    @username = "User #{rand(1..100)}"
-    @password = "Topsecret"
-    @production_number = "#{("A".."Z").to_a.sample}-#{rand(1..100)}"
-    end
+# class Gadget
+#     def initialize
+#     @username = "User #{rand(1..100)}"
+#     @password = "Topsecret"
+#     @production_number = "#{("A".."Z").to_a.sample}-#{rand(1..100)}"
+#     end
 
-    def to_s
-        "Gadget #{@production_number}"
-    end
+#     def to_s
+#         "Gadget #{@production_number}"
+#     end
 
-    def username
-        @username
-    end
-    def production_number
-        @production_number
-    end
-    def username=(new_username)
-        @username = new_username
-    end
-    def password=(new_password)
-        @password = new_password
-    end
-end
-
-
+#     def username
+#         @username
+#     end
+#     def production_number
+#         @production_number
+#     end
+#     def username=(new_username)
+#         @username = new_username
+#     end
+#     def password=(new_password)
+#         @password = new_password
+#     end
+# end
 
 
-phone = Gadget.new
-puts phone.to_s
-puts phone.username
-puts phone.username=("Rubyman")
-puts phone.production_number
-puts phone.password = "bestpasswordever"
+
+
+# phone = Gadget.new
+# puts phone.to_s
+# puts phone.username
+# puts phone.username=("Rubyman")
+# puts phone.production_number
+# puts phone.password = "bestpasswordever"
     
+
+
+# 60 
+# 67
+# 61
+# 62
+# 66
+# 68

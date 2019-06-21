@@ -46,6 +46,6 @@ describe PersonParser do
   end
 
   it "creates objects with born at dates and times" do
-    expect(first_parsed_object.born_at).to eq DateTime.parse("2004-01-06 11:54:00")
+    expect(updated_file_content).to match /Camille,Maxwell,camille.maxwell@domain.com,1-419-555-1234,1999-02-16[ T]22:11:00\+?\d{2}?:?\d{2}?\n\z/
   end
 end
