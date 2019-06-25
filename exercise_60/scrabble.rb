@@ -82,12 +82,3 @@ new_word.score
 
 
 
-simon = Word.new("simon")
-myscore = simon.score
-
-
-
-
-mysentence = Sentence.new("this is a sentence.")
-mysentence.score
-# hrfkucrkjfhkfkf
