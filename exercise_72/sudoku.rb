@@ -10,7 +10,7 @@ class Sudoku
     # How you represent your board is up to you!
     # attr_reader :numbers, :rows, :columns, :squares
     def initialize(board_string)
-        @board = board_string.split("")
+        @board = board_string
         @digits = (1..9).to_a
         @rows = ("A".."I").to_a
         @cols = (1..9).to_a
@@ -21,6 +21,7 @@ class Sudoku
         col_units = @cols.map {|col|cross(@rows, [col])}
         row_units = @rows.map {|row|cross([row], @cols)}
         nine_squares = []
+        # @values = {}
         # byebug
         #getting the row unit 3each
         @rows.each_slice(3) do |therow|
@@ -47,9 +48,9 @@ class Sudoku
 
         #creating something to keep the values of each square
         @values = {}
-        for i in @squares do
-            @values[i] = nil
-        end
+        # for i in @squares do
+        #     @values[i] = nil
+        # end
 
         @done = {}
         for i in @squares do
@@ -77,18 +78,25 @@ class Sudoku
             index = 0
             @rows.each do |row|
                 @cols.each do |col|
-                    @values["{#row}{#col}"] = board_string[index]
-                end
+                    @values["#{row}#{col}"] = @board[index]
                 index += 1
+                end
             end
         end
         # Returns a string representing the current state of the board, well formatted for output to the screen. No `puts` here!
         def to_s
             variable = 0
-            if @board % 9 == 0
-                print "." *30
+            @values.each do |k, v|
+                if variable % 9 == 0
+                puts "|"
+
+                puts "." * 37
+
+                end
+                print "| #{v} "
+                variable += 1
             end
-            variable += 1
+            "|"
         end
 
         def read_grid_str(input)
@@ -146,8 +154,8 @@ class Sudoku
             end 
         end
 end
-
-board_string = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--"
-game = Sudoku.new("board_string")
-p game.board
-# board_string = File.readlines('sudoku_puzzles.txt')
+board_string = File.readlines('sudoku_puzzles.txt').first.chomp
+game = Sudoku.new(board_string)
+game.board
+# p game.values
+puts game

@@ -261,3 +261,22 @@
 #         @password = new_password
 #     end
 # end
+
+
+
+hash = {"a" => 1, "b" => 3, "c" => 1, "d" => 2,  "e"=> 1, "f" => 3,}
+
+
+def value_count(hash, value)
+    count=0
+    hash.each_value do |v|
+        if v == value
+          count += 1
+        else nil
+        end
+    end
+    return count
+end
+
+
+p value_count(hash, 1)
